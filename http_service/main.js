@@ -1,5 +1,7 @@
 var express = require('express'),
-    api = require('./api');
+    database = require('./database'),
+    api = require('./api')(database)
+    ;
 
 var app = express();
 var port = process.env.PORT || 3000;

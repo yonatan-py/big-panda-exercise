@@ -1,8 +1,5 @@
-var mongojs = require('mongojs');
-
-var db = mongojs('bigPanda');
-
-module.exports = function(collection, key, res) {
+module.exports = function (database) {
+ return function handler(collection, key, res) {
   if (!key) {
     res.status(400).json({
       error: "in valid call, please reffer to documentation at: /documentation"
@@ -10,7 +7,7 @@ module.exports = function(collection, key, res) {
     return;
   }
   try {
-    db.collection(collection).findOne({"key": key}, function (error, data) {
+    database.findOne(collection, key, function (error, data) {
       if (error) {
         res.status(500).json({
           error: "error"
@@ -36,4 +33,5 @@ module.exports = function(collection, key, res) {
       error: error
     })
   }
+ }
 }
