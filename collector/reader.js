@@ -3,7 +3,7 @@ var exec = require('child_process').exec;
 var generator;
 module.exports = {
   init: function () {
-    generator = exec('../generator-linux-amd64');
+    generator = exec('./generator-linux-amd64');
     generator.stderr.on('data', function (data) {
       console.error('stderr: ' + data);
     });
